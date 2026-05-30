@@ -1,0 +1,23 @@
+[
+    {
+        "machine_name": "Line A",
+        "max_capacity": 500,
+        "total_produced": 470,
+        "total_defects": 20,
+        "defect_rate": 4.26
+    },
+    {
+        "machine_name": "Line B",
+        "max_capacity": 500,
+        "total_produced": 440,
+        "total_defects": 15,
+        "defect_rate": 3.41
+    },
+    {
+        "machine_name": "Line C",
+        "max_capacity": 500,
+        "total_produced": 350,
+        "total_defects": 25,
+        "defect_rate": 7.14
+    }
+]
