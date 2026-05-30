@@ -1,4 +1,4 @@
-
+import json
 from machine import Machine
 
 
@@ -39,9 +39,9 @@ def main():
 
         try:
 
-            # -------------------------------------------------
-            # 1. Add Production
-            # -------------------------------------------------
+# ------------------------------------------------------------------------
+#              1. Add Production
+# ------------------------------------------------------------------------
             if choice == "1":
 
                 m = input("Select machine (A/B/C): ").strip().upper()
@@ -51,9 +51,9 @@ def main():
 
                 machines[m].produce(units, defects)
 
-            # -------------------------------------------------
-            # 2. View Defect Rate
-            # -------------------------------------------------
+# ---------------------------------------------------------------------
+#               2. View Defect Rate
+# ---------------------------------------------------------------------
             elif choice == "2":
 
                 m = input("Select machine (A/B/C): ").strip().upper()
@@ -63,28 +63,40 @@ def main():
                     f"{machines[m].defect_rate():.2f}%"
                 )
 
-            # -------------------------------------------------
-            # 3. Save to CSV
-            # -------------------------------------------------
+# ----------------------------------------------------------------------
+#              3. Save to CSV
+# ----------------------------------------------------------------------
             elif choice == "3":
-                m = input("Select machine (A/B/C): ")
+                
                 for machine in machines.values():
                     machine.save_to_csv()
 
                 print("All machine data saved to CSV.")
 
-            # -------------------------------------------------
-            # 4. Save to JSON
-            # -------------------------------------------------
+# ----------------------------------------------------------------------
+#              4. Save to JSON
+# ----------------------------------------------------------------------
             elif choice == "4":
 
-                m = input("Select machine (A/B/C): ").strip().upper()
+               data = []
 
-                machines[m].save_to_json()
+               for machine in machines.values():
+                   data.append({
+                       "machine_name": machine.machine_name,
+                       "max_capacity": machine.max_capacity,
+                       "total_produced": machine.total_produced,
+                       "total_defects": machine.total_defects,
+                       "defect_rate": round(machine.defect_rate(), 2)
+            })
 
-            # -------------------------------------------------
-            # 5. Machine Ranking
-            # -------------------------------------------------
+               with open("production_data.json", "w") as file:
+                       json.dump(data, file, indent=4)
+
+               print("All machine data saved to JSON.")
+
+# -----------------------------------------------------------------------
+#               5. Machine Ranking
+# -----------------------------------------------------------------------
             elif choice == "5":
 
                 ranked = sorted(
@@ -101,9 +113,9 @@ def main():
                         f"Defect Rate: {machine.defect_rate():.2f}%"
                     )
 
-            # -------------------------------------------------
-            # 6. Exit
-            # -------------------------------------------------
+# -------------------------------------------------------------------
+# 6. Exit
+# -------------------------------------------------------------------
             elif choice == "6":
 
                 print("Exit system...")
