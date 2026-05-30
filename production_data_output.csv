@@ -1,0 +1,4 @@
+Machine,Produced,Defects,Defect Rate
+Line  A,     470,     20,      4.26%
+Line  B,     440,     15,      3.41%
+Line  C,     350,     25,      7.14%
